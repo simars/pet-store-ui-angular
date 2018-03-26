@@ -35,7 +35,7 @@ export class PetService {
     return this.httpClient.put<Pet>(this.apiUrl + '/pets/' + petId, pet, options);
   }
 
-  deletepet(id) : Observable<void> {
+  removePet(id) : Observable<void> {
     let options = this.getHeader();
     return this.httpClient.delete<void>(this.apiUrl + '/pets/' + id, options);
   }

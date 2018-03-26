@@ -1,22 +1,16 @@
 .mat-column-id {
-  text-align: center;
-  flex: 1 0 1 5em
+  flex: 1 0
 }
 
 .mat-column-name {
-  text-align: center;
   flex: 3
 }
-
 
 .mat-column-status {
-  text-align: center;
   flex: 3
 }
 
-
 .mat-column-category {
-  text-align: center;
   flex: 3
 }
 
@@ -24,4 +18,26 @@
 .mat-column-action {
   text-align: center;
   flex: 4
+}
+
+/* Structure */
+.container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.header {
+  min-height: 64px;
+  padding: 8px 24px 0;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
 }

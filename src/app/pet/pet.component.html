@@ -1,37 +1,30 @@
-<mat-toolbar>
-  <mat-toolbar-row>
-    <span class="flex-fill-space"></span>
-    <span>All Pets</span>
-    <span class="flex-fill-space"></span>
-  </mat-toolbar-row>
-  <mat-toolbar-row>
-    <mat-form-field class="flex-fill-space">
-      <input matInput [(ngModel)]="answer" placeholder="search pets">
+
+<div class="container">
+
+
+  <div class="header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
-  </mat-toolbar-row>
-</mat-toolbar>
+  </div>
 
-
-<mat-divider></mat-divider>
-
-<div>
-  <mat-table #table [dataSource]="list">
+  <mat-table #table [dataSource]="dataSource" matSort>
 
     <!-- Position Column -->
     <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef> ID. </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID. </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
     </ng-container>
 
     <!-- Status Column -->
     <ng-container matColumnDef="status">
-      <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
     </ng-container>
 
@@ -46,7 +39,7 @@
       <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
       <mat-cell *matCellDef="let element">
         <button mat-flat-button (click)="details(element)" >View</button>
-        <button mat-stroked-button="" (click)="remove(element)" >Remove</button>
+        <button mat-stroked-button="" (click)="remove(element, table)" >Remove</button>
       </mat-cell>
     </ng-container>
 
@@ -54,4 +47,11 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
+
+  <mat-paginator #paginator
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 20]"
+                 [showFirstLastButtons]="true">
+  </mat-paginator>
+
 </div>
