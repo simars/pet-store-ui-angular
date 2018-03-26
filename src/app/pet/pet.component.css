@@ -1,0 +1,27 @@
+.mat-column-id {
+  text-align: center;
+  flex: 1 0 1 5em
+}
+
+.mat-column-name {
+  text-align: center;
+  flex: 3
+}
+
+
+.mat-column-status {
+  text-align: center;
+  flex: 3
+}
+
+
+.mat-column-category {
+  text-align: center;
+  flex: 3
+}
+
+
+.mat-column-action {
+  text-align: center;
+  flex: 4
+}

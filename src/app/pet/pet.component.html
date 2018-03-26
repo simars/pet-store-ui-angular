@@ -1,8 +1,21 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span class="flex-fill-space"></span>
+    <span>All Pets</span>
+    <span class="flex-fill-space"></span>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    <mat-form-field class="flex-fill-space">
+      <input matInput [(ngModel)]="answer" placeholder="search pets">
+    </mat-form-field>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
 <mat-divider></mat-divider>
 
 <div>
   <mat-table #table [dataSource]="list">
-
 
     <!-- Position Column -->
     <ng-container matColumnDef="id">
@@ -27,6 +40,16 @@
       <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.category.name}} </mat-cell>
     </ng-container>
+
+    <!-- Category Column -->
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-flat-button (click)="details(element)" >View</button>
+        <button mat-stroked-button="" (click)="remove(element)" >Remove</button>
+      </mat-cell>
+    </ng-container>
+
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
