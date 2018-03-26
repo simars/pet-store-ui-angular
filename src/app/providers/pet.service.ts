@@ -14,26 +14,32 @@ export class PetService {
     this.apiUrl = URL = ( <any> environment).apiBase || "";
   }
 
-  petsList() : Observable<Pet[]> {
+
+  getList() : Observable<Pet[]> {
     return this.httpClient.get<Pet[]>(this.apiUrl + '/pets');
   }
-  createItem(pet) : Observable<Pet> {
+
+  get(id) : Observable<Pet> {
+    return this.httpClient.get<Pet>(this.apiUrl + '/pets/' + id);
+  }
+
+  create(pet) : Observable<Pet> {
     console.info(pet);
     let options = this.getHeader();
     return this.httpClient.post<Pet>(this.apiUrl + '/pets', pet, options);
   }
-  updateItem(pet, petId) : Observable<Pet> {
+
+  updatepet(pet, petId) : Observable<Pet> {
     console.info(pet);
     let options = this.getHeader();
     return this.httpClient.put<Pet>(this.apiUrl + '/pets/' + petId, pet, options);
   }
-  deleteItem(id) : Observable<void> {
+
+  deletepet(id) : Observable<void> {
     let options = this.getHeader();
     return this.httpClient.delete<void>(this.apiUrl + '/pets/' + id, options);
   }
-  pet(id) : Observable<Pet> {
-    return this.httpClient.get<Pet>(this.apiUrl + '/pets/' + id);
-  }
+
   private getHeader(){
     let headers = new HttpHeaders({ 'Content-Type': 'application/json'});
     return { headers: headers };

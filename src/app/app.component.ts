@@ -14,7 +14,7 @@ export class AppComponent {
 
   constructor(private  petService : PetService) {
 
-    this.petService.petsList().subscribe(
+    this.petService.getList().subscribe(
       {
         next: data => console.log(data)
       }

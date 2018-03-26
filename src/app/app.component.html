@@ -10,18 +10,15 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-<mat-card>
-  <mat-form-field>
-    <input matInput [(ngModel)]="answer" placeholder="Who has the best dev tutorials?">
-  </mat-form-field>
+<!--<mat-card>-->
+  <!---->
+  <!--&lt;!&ndash;<br>&ndash;&gt;-->
 
-  <br>
+  <!--&lt;!&ndash;<button mat-raised-button (click)="showAnswer()">Answer me</button>&ndash;&gt;-->
 
-  <button mat-raised-button (click)="showAnswer()">Answer me</button>
-  <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
-</mat-card>
+<!--</mat-card>-->
+
+<mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
 
 
-<mat-card *ngIf="answerDisplay">
-  <h1>{{ answerDisplay }}, you're damn right.</h1>
-</mat-card>
+<router-outlet></router-outlet>

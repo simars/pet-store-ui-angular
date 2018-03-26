@@ -9,10 +9,16 @@ import {MaterialModule} from "./material.module";
 import { FormsModule } from '@angular/forms';
 import {PetService} from "./providers/pet.service";
 import {HttpClientModule} from "@angular/common/http";
+import {PetComponent} from "./pet/pet.component";
+import {PetDetailComponent} from "./pet-detail/pet-detail.component";
+import {PetInputComponent} from "./pet-input/pet-input.component";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PetComponent,
+    PetDetailComponent,
+    PetInputComponent
   ],
   imports: [
     BrowserModule,
