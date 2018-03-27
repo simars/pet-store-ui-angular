@@ -17,9 +17,9 @@
     <mat-form-field formGroupName="category" >
       <mat-select formControlName="name"  required>
         <mat-option>-- None --</mat-option>
-        <mat-option value="DOG">DOG</mat-option>
-        <mat-option value="CAT">DOG</mat-option>
-        <mat-option value="RABBOT">DOG</mat-option>
+        <mat-option *ngFor="let cat of categories" [value]="cat.name" >
+          {{cat.name}}
+        </mat-option>
       </mat-select>
       <mat-placeholder>Category</mat-placeholder>
     </mat-form-field>

@@ -3,6 +3,8 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validator, Validators} f
 import {IdName, Pet} from "../model/pet-domain.model";
 import {MatChipInputEvent} from "@angular/material";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
+import {Observable} from "rxjs/Observable";
+import {PetService} from "../providers/pet.service";
 
 @Component({
   selector: 'app-pet-input',
@@ -12,10 +14,9 @@ import {COMMA, ENTER} from "@angular/cdk/keycodes";
 export class PetInputComponent implements OnInit {
 
   @Input()
-  pet: Pet;
+  pet:  Pet;
 
-  @Input()
-  categories: IdName[] = [{name: 'SMALL'}];
+  categories: IdName[];
 
   @Output()
   petChange: EventEmitter<Pet>;
@@ -30,7 +31,7 @@ export class PetInputComponent implements OnInit {
 
   tagSet: IdName[];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private petService: PetService) {
     this.photoUrlsForArray = fb.array([]);
     this.tagsFormArray = fb.array([]);
     this.petChange = new EventEmitter<Pet>();
@@ -58,10 +59,23 @@ export class PetInputComponent implements OnInit {
     });
   }
 
+  trackBy(index, idName) {
+    return idName.name;
+  }
 
 
   ngOnInit() {
-    this.onResetForm();
+    this.petService.getAllCategories()
+      .subscribe(
+        {
+          next: (value) =>
+          {
+            this.categories = value;
+            this.onResetForm();
+          }
+        }
+      );
+
   }
 
 

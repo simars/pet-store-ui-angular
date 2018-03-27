@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment'
 import {Observable} from "rxjs/Observable";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Pet} from "../model/pet-domain.model";
+import {IdName, Pet} from "../model/pet-domain.model";
 import {from} from "rxjs/observable/from";
 
 @Injectable()
@@ -41,19 +41,19 @@ export class PetService {
   }
 
   create(pet) : Observable<Pet> {
-    let options = this.getHeader();
-    return this.httpClient.post<Pet>(this.apiUrl + '/pets', pet, options);
+    return this.httpClient.post<Pet>(this.apiUrl + '/pets', pet, this.getHeader());
   }
 
   updatepet(pet, petId) : Observable<Pet> {
-    console.info(pet);
-    let options = this.getHeader();
-    return this.httpClient.put<Pet>(this.apiUrl + '/pets/' + petId, pet, options);
+    return this.httpClient.put<Pet>(this.apiUrl + '/pets/' + petId, pet, this.getHeader());
   }
 
   removePet(id) : Observable<void> {
-    let options = this.getHeader();
-    return this.httpClient.delete<void>(this.apiUrl + '/pets/' + id, options);
+    return this.httpClient.delete<void>(this.apiUrl + '/pets/' + id, this.getHeader());
+  }
+
+  getAllCategories() : Observable<IdName[]> {
+    return this.httpClient.get<IdName>(this.apiUrl + '/pets/meta/categories')
   }
 
   private getHeader(){
