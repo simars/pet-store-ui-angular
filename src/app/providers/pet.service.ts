@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment'
 import {Observable} from "rxjs/Observable";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Pet} from "../model/pet-domain.model";
+import {from} from "rxjs/observable/from";
 
 @Injectable()
 export class PetService {
@@ -21,11 +22,25 @@ export class PetService {
   }
 
   get(id) : Observable<Pet> {
+    if(!id || id === "new") {
+      return from([
+        <Pet>{
+          id: null,
+          name: "",
+          tags: [],
+          photoUrls: [],
+          category: {
+            id: null,
+            name: ""
+          },
+          status: "AVAILABLE"
+        }]
+      )
+    }
     return this.httpClient.get<Pet>(this.apiUrl + '/pets/' + id);
   }
 
   create(pet) : Observable<Pet> {
-    console.info(pet);
     let options = this.getHeader();
     return this.httpClient.post<Pet>(this.apiUrl + '/pets', pet, options);
   }

@@ -1,10 +1,8 @@
 <div *ngIf="pet" class="container">
 
   <mat-card class="card">
-    <app-pet-input [(pet)]="pet"></app-pet-input>
+    <app-pet-input [pet]="pet" (petChange)=onPetChange($event) ></app-pet-input>
   </mat-card>
-
-
 
 </div>
 

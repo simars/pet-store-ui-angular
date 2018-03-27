@@ -1,3 +1,80 @@
-<p>
-  pet-input works!
-</p>
+<div class="container">
+  <form class="container" (ngSubmit)="onSubmitForm()" [formGroup]="petForm">
+    <!--<mat-checkbox>Hide required marker</mat-checkbox>-->
+    <div>
+      <label>Status </label>
+      <mat-radio-group formControlName="status">
+        <mat-radio-button value="AVAILABLE">Available</mat-radio-button>
+        <mat-radio-button value="PENDING">Pending</mat-radio-button>
+        <mat-radio-button value="SOLD">Sold</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <mat-form-field>
+      <input matInput formControlName="name" placeholder="Name" required>
+    </mat-form-field>
+
+    <mat-form-field formGroupName="category" >
+      <mat-select formControlName="name"  required>
+        <mat-option>-- None --</mat-option>
+        <mat-option value="DOG">DOG</mat-option>
+        <mat-option value="CAT">DOG</mat-option>
+        <mat-option value="RABBOT">DOG</mat-option>
+      </mat-select>
+      <mat-placeholder>Category</mat-placeholder>
+    </mat-form-field>
+
+
+    <div class="actions">
+      <button (click) =onAddPhotoUrl() mat-flat-button>Add Photos</button>
+    </div>
+    <div class="photo-urls" formArrayName="photoUrls"
+         *ngFor="let photoUrl of petForm.get('photoUrls').controls; let i = index;">
+      <mat-form-field >
+        <input type="url" matInput [formControlName]="i" [placeholder]="'Photo Url: ' + (i+1)" required>
+        <mat-error *ngIf="photoUrl.invalid">Invalid</mat-error>
+      </mat-form-field>
+      <button (click) = onRemovePhotoUrl(i) mat-icon-button>X</button>
+    </div>
+
+    <mat-form-field class="chip-list">
+      <mat-chip-list #chipList>
+        <mat-chip *ngFor="let tag of tagSet" selectable="true"
+                  removable="true" (remove)="removeTag(tag)">
+          {{tag.name}}
+          <mat-icon matChipRemove>x</mat-icon>
+        </mat-chip>
+        <input placeholder="Tags..."
+               [matChipInputFor]="chipList"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               matChipInputAddOnBlur="true"
+               (matChipInputTokenEnd)="addTag($event)" />
+      </mat-chip-list>
+    </mat-form-field>
+
+    <div class="actions">
+      <button [disabled]="!petForm.valid" mat-flat-button>Submit</button>
+      <button mat-raised-button>Cancel</button>
+    </div>
+
+  </form>
+
+  <div class="container">
+    <h1 >Live Preview</h1>
+  </div>
+
+  <app-pet-output  [pet]="petForm.value" ></app-pet-output>
+
+
+  <!--<pre>-->
+    <!--{{petForm.value | json }}-->
+  <!--</pre>-->
+
+  <!--<pre>-->
+    <!--{{tagSet | json}}-->
+  <!--</pre>-->
+
+  <!--<pre>-->
+    <!--{{pet | json }}-->
+  <!--</pre>-->
+</div>

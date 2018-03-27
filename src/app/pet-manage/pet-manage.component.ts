@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import {PetService} from "../providers/pet.service";
-import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
-import {switchMap} from "rxjs/operators";
+import {ActivatedRoute, Router} from "@angular/router";
+import {PetService} from "../providers/pet.service";
 import {Pet} from "../model/pet-domain.model";
+import {switchMap} from "rxjs/operators";
 
 @Component({
-  selector: 'app-pet-detail',
-  templateUrl: './pet-detail.component.html',
-  styleUrls: ['./pet-detail.component.css']
+  selector: 'app-pet-manage',
+  templateUrl: './pet-manage.component.html',
+  styleUrls: ['./pet-manage.component.css']
 })
-export class PetDetailComponent implements OnInit {
+export class PetManageComponent implements OnInit {
 
   pet: Pet;
+
+  error: any;
 
   private routing$:Subscription;
 
@@ -27,6 +29,16 @@ export class PetDetailComponent implements OnInit {
           next: pet => this.pet = pet
         }
       );
+  }
+
+
+  onPetChange(pet: Pet) {
+    (pet.id ? this.petService.updatepet(pet,pet.id) : this.petService.create(pet))
+      .subscribe({
+        next: (data) => this.pet = data || this.pet,
+        error: (error) => this.error = error
+      })
+
   }
 
 

@@ -2,11 +2,6 @@
   flex: 1 0 90%;
 }
 
-.header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
-}
-
 .container {
   padding: 1em;
   display: flex;
@@ -21,5 +16,9 @@ mat-card-actions {
 }
 
 mat-card-content > p {
+  text-align: center;
+}
+
+h1,h2 {
   text-align: center;
 }

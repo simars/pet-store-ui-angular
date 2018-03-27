@@ -13,6 +13,7 @@ import {PetComponent} from "./pet/pet.component";
 import {PetDetailComponent} from "./pet-detail/pet-detail.component";
 import {PetInputComponent} from "./pet-input/pet-input.component";
 import {PetOutputComponent} from "./pet-output/pet-output.component";
+import {PetManageComponent} from "./pet-manage/pet-manage.component";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {PetOutputComponent} from "./pet-output/pet-output.component";
     PetComponent,
     PetDetailComponent,
     PetInputComponent,
-    PetOutputComponent
+    PetOutputComponent,
+    PetManageComponent
   ],
   imports: [
     BrowserModule,

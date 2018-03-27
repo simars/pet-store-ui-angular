@@ -1,22 +1,13 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <span>SimarS Pet Store</span>
-
-    <span flex class="flex-fill-space"></span>
-
-    <button mat-button>About</button>
-    <button mat-button>Services</button>
-    <button mat-button>Contact</button>
+    <span class="flex-fill-space"></span>
+    <button [routerLink]="['/']"  mat-button>Home</button>
+    <button [routerLink]="['/pet/manage/new']" mat-button>Create</button>
+    <button [routerLink]="['/login']" mat-button>Login</button>
   </mat-toolbar-row>
 </mat-toolbar>
 
-<!--<mat-card>-->
-  <!---->
-  <!--&lt;!&ndash;<br>&ndash;&gt;-->
-
-  <!--&lt;!&ndash;<button mat-raised-button (click)="showAnswer()">Answer me</button>&ndash;&gt;-->
-
-<!--</mat-card>-->
 
 <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
 
