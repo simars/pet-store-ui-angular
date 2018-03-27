@@ -33,7 +33,7 @@ export class PetManageComponent implements OnInit {
 
 
   onPetChange(pet: Pet) {
-    (pet.id ? this.petService.updatepet(pet,pet.id) : this.petService.create(pet))
+    (pet.id ? this.petService.updatePet(pet,pet.id) : this.petService.create(pet))
       .subscribe({
         next: (data) => this.pet = data || this.pet,
         error: (error) => this.error = error

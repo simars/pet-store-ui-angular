@@ -48,7 +48,7 @@ export class PetComponent implements OnInit {
 
 
   ngOnInit() {
-    this.petService.getList()
+    this.petService.getPets()
       .subscribe(
       {
         next: list => {

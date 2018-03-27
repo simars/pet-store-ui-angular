@@ -17,8 +17,8 @@ export class PetService {
   }
 
 
-  getList() : Observable<Pet[]> {
-    return this.httpClient.get<Pet[]>(this.apiUrl + '/pets');
+  getPets() : Observable<Pet[]> {
+    return this.httpClient.get<Pet[]>(this.apiUrl + '/pet');
   }
 
   get(id) : Observable<Pet> {
@@ -37,23 +37,23 @@ export class PetService {
         }]
       )
     }
-    return this.httpClient.get<Pet>(this.apiUrl + '/pets/' + id);
+    return this.httpClient.get<Pet>(this.apiUrl + '/pet/' + id);
   }
 
   create(pet) : Observable<Pet> {
-    return this.httpClient.post<Pet>(this.apiUrl + '/pets', pet, this.getHeader());
+    return this.httpClient.post<Pet>(this.apiUrl + '/pet', pet, this.getHeader());
   }
 
-  updatepet(pet, petId) : Observable<Pet> {
-    return this.httpClient.put<Pet>(this.apiUrl + '/pets/' + petId, pet, this.getHeader());
+  updatePet(pet, petId) : Observable<Pet> {
+    return this.httpClient.put<Pet>(this.apiUrl + '/pet/' + petId, pet, this.getHeader());
   }
 
   removePet(id) : Observable<void> {
-    return this.httpClient.delete<void>(this.apiUrl + '/pets/' + id, this.getHeader());
+    return this.httpClient.delete<void>(this.apiUrl + '/pet/' + id, this.getHeader());
   }
 
   getAllCategories() : Observable<IdName[]> {
-    return this.httpClient.get<IdName>(this.apiUrl + '/pets/meta/categories')
+    return this.httpClient.get<IdName[]>(this.apiUrl + '/pet/meta/categories')
   }
 
   private getHeader(){
