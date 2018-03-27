@@ -15,3 +15,10 @@
   width: 100%;
 }
 
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around ;
+}
+

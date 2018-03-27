@@ -60,9 +60,5 @@ export class PetService {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json'});
     return { headers: headers };
   }
-  private noAuthHeader(){
-    let headers = new HttpHeaders({ 'Content-Type': 'application/json'});
-    return { headers: headers };
-  }
 
 }

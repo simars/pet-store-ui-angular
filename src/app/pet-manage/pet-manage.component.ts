@@ -36,7 +36,8 @@ export class PetManageComponent implements OnInit {
     (pet.id ? this.petService.updatePet(pet,pet.id) : this.petService.create(pet))
       .subscribe({
         next: (data) => this.pet = data || this.pet,
-        error: (error) => this.error = error
+        error: (error) => this.error = error,
+        complete: () => this.router.navigate(["/pet",this.pet.id])
       })
 
   }

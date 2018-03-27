@@ -1,10 +1,8 @@
 <div *ngIf="pet" class="container">
+  <app-pet-output [pet]="pet"></app-pet-output>
 
-  <mat-card class="card">
-    <app-pet-input [(pet)]="pet"></app-pet-input>
-  </mat-card>
-
-
-
+  <div class="actions">
+    <button [routerLink]="['/']"  mat-flat-button>Back</button>
+    <button [routerLink]="['/pet/manage/', this.pet.id]" mat-raised-button>Manage</button>
+  </div>
 </div>
-

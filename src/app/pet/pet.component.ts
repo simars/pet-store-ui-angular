@@ -46,6 +46,10 @@ export class PetComponent implements OnInit {
       )
   }
 
+  manage(element: Pet) {
+    this.router.navigate(["/pet/manage",element.id])
+  }
+
 
   ngOnInit() {
     this.petService.getPets()

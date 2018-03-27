@@ -39,7 +39,8 @@
       <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
       <mat-cell *matCellDef="let element">
         <button mat-flat-button (click)="details(element)" >View</button>
-        <button mat-stroked-button="" (click)="remove(element, table)" >Remove</button>
+        <button mat-stroked-button (click)="manage(element, table)" >Manage</button>
+        <button mat-button (click)="remove(element, table)" >Remove</button>
       </mat-cell>
     </ng-container>
 
