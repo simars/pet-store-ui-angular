@@ -1,7 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Pet, PetService} from "../providers/pet.service";
+import {PetService} from "../providers/pet.service";
 import {Router} from "@angular/router";
 import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
+import {Pet} from "../model/pet-domain.model";
 
 @Component({
   selector: 'app-pet',
@@ -10,7 +11,7 @@ import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
 })
 export class PetComponent implements OnInit {
 
-  list: Pet[];
+  private list: Pet[];
 
   dataSource: MatTableDataSource<Pet>;
 
@@ -38,7 +39,7 @@ export class PetComponent implements OnInit {
         {
          next: () => {
            this.list.splice(this.list.indexOf(element),1);
-           table.renderRows(); // prefer behaviour subject on datasource
+           // table.renderRows(); // prefer behaviour subject on datasource
            this.dataSource.connect().next(this.list);
          }
         }

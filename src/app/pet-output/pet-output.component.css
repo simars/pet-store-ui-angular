@@ -14,3 +14,12 @@
   align-items: center;
   flex-wrap: wrap;
 }
+
+mat-card-actions {
+  display: flex;
+  justify-content: space-around
+}
+
+mat-card-content > p {
+  text-align: center;
+}

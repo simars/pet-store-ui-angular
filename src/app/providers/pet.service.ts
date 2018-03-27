@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment'
 import {Observable} from "rxjs/Observable";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Pet} from "../model/pet-domain.model";
 
 @Injectable()
 export class PetService {
@@ -49,9 +50,4 @@ export class PetService {
     return { headers: headers };
   }
 
-}
-
-export interface Pet {
-  id:Number,
-  name:String
 }

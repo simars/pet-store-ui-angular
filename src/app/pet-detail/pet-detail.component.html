@@ -1,7 +1,11 @@
-<p>
-  pet-detail works!
-</p>
-<code>
-  {{pet | json}}
-</code>
+<div *ngIf="pet" class="container">
+
+  <mat-card class="card">
+    <app-pet-input></app-pet-input>
+  </mat-card>
+
+  <app-pet-output [pet]="pet" ></app-pet-output>
+
+
+</div>
 

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Pet, PetService} from "../providers/pet.service";
+import {PetService} from "../providers/pet.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
 import {switchMap} from "rxjs/operators";
+import {Pet} from "../model/pet-domain.model";
 
 @Component({
   selector: 'app-pet-detail',

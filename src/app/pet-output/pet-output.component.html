@@ -1,0 +1,21 @@
+<mat-card class="card">
+  <mat-card-header>
+    <div mat-card-avatar class="header-image"></div>
+    <mat-card-title>{{pet.name}}</mat-card-title>
+    <mat-card-subtitle>{{pet.category.name}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      My name is {{pet.name}}, I am a {{pet.category.name}}.
+      My status is {{pet.status}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions *ngIf="pet.id">
+    <button mat-flat-button>ORDER</button>
+    <button mat-stroked-button>MANAGE</button>
+    <button mat-raised-button>REMOVE</button>
+  </mat-card-actions>
+  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+
+</mat-card>
