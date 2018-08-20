@@ -3,11 +3,11 @@ export interface IdName {
   name: string;
 }
 
-export interface Pet extends IdName{
-  status : string,
-  category: IdName,
-  tags : IdName[],
-  photoUrls: string[]
+export interface Pet extends IdName {
+  status: string;
+  category: IdName;
+  tags: IdName[];
+  photoUrls: string[];
 }
 
 

@@ -1,10 +1,11 @@
-import {Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validator, Validators} from "@angular/forms";
-import {IdName, Pet} from "../model/pet-domain.model";
-import {MatChipInputEvent} from "@angular/material";
-import {COMMA, ENTER} from "@angular/cdk/keycodes";
-import {Observable} from "rxjs/Observable";
-import {PetService} from "../providers/pet.service";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {IdName, Pet} from '../model/pet-domain.model';
+import {MatChipInputEvent} from '@angular/material';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {Observable} from 'rxjs/Observable';
+import {PetService} from '../providers/pet.service';
+import {tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-pet-input',
@@ -16,7 +17,7 @@ export class PetInputComponent implements OnInit {
   @Input()
   pet:  Pet;
 
-  categories: IdName[];
+  categories$: Observable<IdName[]>;
 
   @Output()
   petChange: EventEmitter<Pet>;
@@ -37,8 +38,8 @@ export class PetInputComponent implements OnInit {
     this.petChange = new EventEmitter<Pet>();
     this.petForm = fb.group({
       id: null,
-      name: "",
-      status: "",
+      name: '',
+      status: '',
       category: fb.group({
         id: null,
         name: ''
@@ -48,11 +49,17 @@ export class PetInputComponent implements OnInit {
     });
   }
 
-  mapPhotoUrl(url:string) : FormControl {
-    return this.fb.control(url, Validators.pattern("^https?://.*"));
+  ngOnInit() {
+    this.categories$ = this.petService.getAllCategories().pipe(
+      tap(() => this.onResetForm())
+    );
   }
 
-  mapTag(tag: IdName) : FormGroup {
+  mapPhotoUrl(url: string): FormControl {
+    return this.fb.control(url, Validators.pattern('^https?://.*'));
+  }
+
+  mapTag(tag: IdName): FormGroup {
     return this.fb.group({
       name: tag.name,
       id: tag.id
@@ -62,22 +69,6 @@ export class PetInputComponent implements OnInit {
   trackBy(index, idName) {
     return idName.name;
   }
-
-
-  ngOnInit() {
-    this.petService.getAllCategories()
-      .subscribe(
-        {
-          next: (value) =>
-          {
-            this.categories = value;
-            this.onResetForm();
-          }
-        }
-      );
-
-  }
-
 
   addTag(event: MatChipInputEvent): void {
     const input = event.input;
@@ -95,7 +86,7 @@ export class PetInputComponent implements OnInit {
   }
 
   removeTag(tag: IdName): void {
-    let index = this.tagSet.indexOf(tag);
+    const index = this.tagSet.indexOf(tag);
 
     if (index >= 0) {
       this.tagSet.splice(index, 1);
@@ -112,10 +103,10 @@ export class PetInputComponent implements OnInit {
 
 
   onResetForm() {
-    for(let i =0 ; i < this.tagsFormArray.length; i++) {
+    for (let i = 0 ; i < this.tagsFormArray.length; i++) {
       this.tagsFormArray.removeAt(i);
     }
-    for(let j =0 ; j < this.photoUrlsForArray.length; j++) {
+    for (let j = 0 ; j < this.photoUrlsForArray.length; j++) {
       this.photoUrlsForArray.removeAt(j);
     }
 

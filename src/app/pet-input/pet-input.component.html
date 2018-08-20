@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="categories$ | async as categories">
   <form class="container" (ngSubmit)="onSubmitForm()" [formGroup]="petForm">
     <!--<mat-checkbox>Hide required marker</mat-checkbox>-->
     <div>

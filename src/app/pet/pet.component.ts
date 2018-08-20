@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {PetService} from "../providers/pet.service";
-import {Router} from "@angular/router";
-import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
-import {Pet} from "../model/pet-domain.model";
+import {PetService} from '../providers/pet.service';
+import {Router} from '@angular/router';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {Pet} from '../model/pet-domain.model';
 
 @Component({
   selector: 'app-pet',
@@ -18,13 +18,13 @@ export class PetComponent implements OnInit {
   displayedColumns = ['id', 'name', 'status', 'category', 'action'];
 
 
-  constructor(private petService : PetService, private router: Router) { }
+  constructor(private petService: PetService, private router: Router) { }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   details(element: Pet) {
-    this.router.navigate(["/pet",element.id])
+    this.router.navigate(['/pet', element.id]);
   }
 
   applyFilter(filterValue: string) {
@@ -38,16 +38,16 @@ export class PetComponent implements OnInit {
       .subscribe(
         {
          next: () => {
-           this.list.splice(this.list.indexOf(element),1);
+           this.list.splice(this.list.indexOf(element), 1);
            // table.renderRows(); // prefer behaviour subject on datasource
            this.dataSource.connect().next(this.list);
          }
         }
-      )
+      );
   }
 
   manage(element: Pet) {
-    this.router.navigate(["/pet/manage",element.id])
+    this.router.navigate(['/pet/manage', element.id]);
   }
 
 
@@ -62,10 +62,8 @@ export class PetComponent implements OnInit {
           this.dataSource.sort = this.sort;
         }
       }
-    )
+    );
   }
-
-
 
 }
 

@@ -1,4 +1,4 @@
-<div *ngIf="pet" class="container">
+<div *ngIf="pet$ | async as pet" class="container">
   <app-pet-output [pet]="pet"></app-pet-output>
 
   <div class="actions">

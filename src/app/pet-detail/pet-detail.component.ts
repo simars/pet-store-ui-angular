@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {PetService} from "../providers/pet.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {Subscription} from "rxjs/Subscription";
-import {switchMap} from "rxjs/operators";
-import {Pet} from "../model/pet-domain.model";
+import {PetService} from '../providers/pet.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subscription} from 'rxjs/Subscription';
+import {switchMap} from 'rxjs/operators';
+import {Pet} from '../model/pet-domain.model';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-pet-detail',
@@ -12,25 +13,13 @@ import {Pet} from "../model/pet-domain.model";
 })
 export class PetDetailComponent implements OnInit {
 
-  pet: Pet;
-
-  private routing$:Subscription;
+  pet$: Observable<Pet>;
 
   constructor(private router: Router, private route: ActivatedRoute, private petService: PetService) { }
 
-
   ngOnInit() {
-    this.routing$ = this.route.params
-      .pipe(switchMap(params => this.petService.get(params["id"])))
-      .subscribe(
-        {
-          next: pet => this.pet = pet
-        }
-      );
+    this.pet$ = this.route.params
+      .pipe(switchMap(params => this.petService.get(params['id'])));
   }
 
-
-  ngOnDestroy() {
-    this.routing$.unsubscribe();
-  }
 }
